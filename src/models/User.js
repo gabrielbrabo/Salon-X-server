@@ -20,7 +20,6 @@ const userschema = new mongoose.Schema(
         },
         avatar: {
             type: String,
-            required: true,
         },
         status: {
             type: String,
