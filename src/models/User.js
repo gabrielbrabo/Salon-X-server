@@ -21,6 +21,12 @@ const userschema = new mongoose.Schema(
         avatar: {
             type: String,
         },
+        professionaluser: [
+            {
+                type: mongoose.Types.ObjectId,
+                ref: 'professionalUser'
+            }
+        ],
         status: {
             type: String,
             enum: ["active", "inactive"],

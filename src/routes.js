@@ -1,6 +1,7 @@
 const UsersController = require( "./controllers/UsersController")
 const SessionsController = require ("./controllers/SessionsController")
 const RefreshController = require ("./controllers/RefreshController")
+const ProfessionalUser = require ("./controllers/ProfessionalUser")
 
 const auth = require ("./middlewares/auth")
 
@@ -12,5 +13,8 @@ routes.post('/sessions', SessionsController.create)
 routes.post('/refresh', RefreshController.checkToken)
 
 routes.use(auth)
+
+routes.post('/pro/user', ProfessionalUser.create)
+routes.get('/professionaluser', ProfessionalUser.index)
 
 module.exports = routes
