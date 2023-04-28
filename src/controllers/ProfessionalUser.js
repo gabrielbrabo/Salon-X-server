@@ -44,13 +44,25 @@ class ProfessionalUser {
 
     async index(req, res) {
         try {
-            const professionaluser = await User.findById({
+            const professionaluser = await ProUser.find()
+            return res.json(professionaluser)
+        } catch (err) {
+            console.log(err)
+            res.status(500).json({
+                message: 'there was an error on server side!'
+            })
+        }
+    }
+
+    async Myindex(req, res) {
+        try {
+            const myprofessionaluser = await User.findById({
                 _id: req.userId
             }).populate('professionaluser')
 
-            if (professionaluser) {
+            if (myprofessionaluser) {
                 return res.json({
-                    data: professionaluser.professionaluser,
+                    data: myprofessionaluser.professionaluser,
                     message: 'Sucess'
                 })
             }
