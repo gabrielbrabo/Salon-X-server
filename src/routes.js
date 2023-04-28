@@ -12,9 +12,10 @@ routes.post('/register/user', UsersController.create)
 routes.post('/sessions', SessionsController.create)
 routes.post('/refresh', RefreshController.checkToken)
 
+routes.get('/professionaluser', ProfessionalUser.index)
+
 routes.use(auth)
 
 routes.post('/pro/user', ProfessionalUser.create)
-routes.get('/professionaluser', ProfessionalUser.index)
 
 module.exports = routes
