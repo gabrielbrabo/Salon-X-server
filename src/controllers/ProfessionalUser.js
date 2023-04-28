@@ -45,7 +45,12 @@ class ProfessionalUser {
     async index(req, res) {
         try {
             const professionaluser = await ProUser.find()
-            return res.json(professionaluser)
+            if (professionaluser) {
+                return res.json({
+                    data: professionaluser,
+                    message: 'Sucess'
+                })
+            }
         } catch (err) {
             console.log(err)
             res.status(500).json({
