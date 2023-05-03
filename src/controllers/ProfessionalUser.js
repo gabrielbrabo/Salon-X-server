@@ -5,7 +5,17 @@ class ProfessionalUser {
     
     async create(req, res) {
 
-        const { token, name, cell, address, number, district } = req.body
+        const { 
+
+            token, 
+            name,
+            avatar,
+            stars,
+            cell,
+            lat,
+            lng
+
+        } = req.body
 
         if (!token) {
             return res.status(422).json({ msg: "Error!" });
@@ -13,10 +23,11 @@ class ProfessionalUser {
             
         const newProfessionalUser = new ProUser({
             name: name.toUpperCase(),
+            avatar: avatar,
             cell: cell,
-            address: address,
-            number: number,
-            district: district,
+            stars: stars,
+            lat: lat,
+            lng: lng,
             ID_user: req.userId
         })
 
@@ -32,12 +43,12 @@ class ProfessionalUser {
                 }
             })
             res.status(200).json({
-                msg: 'Administrador cadastrado com sucesso.'
+                msg: 'Conta profissional cadastrado com sucesso.'
             })
 
         } catch (err){
             res.status(500).json({
-                msg: 'Error ao cadastra o Administrador.'
+                msg: 'Error ao cadastra uma Conta profissional.'
             })
         }
     }

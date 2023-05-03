@@ -11,21 +11,19 @@ const professionalUser = new mongoose.Schema(
             ref: 'user',
             required: true,
         },
-        cell: {
+        avatar: {
+            type: String
+        },
+        stars: {
+            type: String,
+        },
+        lat: {
             type: String,
             required: true
         },
-        address: {
+        lng: {
             type: String,
-            required: false,
-        },
-        number: {
-            type: String,
-            required: false,
-        },
-        district: {
-            type: String,
-            required: false,
+            required: true
         },
     }
 );
