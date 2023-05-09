@@ -1,5 +1,6 @@
 const ProUser = require('../models/ProfessionalUser')
 const User = require( "../models/User")
+const haversine = require('haversine-distance')
 
 class ProfessionalUser {
     
@@ -88,6 +89,55 @@ class ProfessionalUser {
                 message: 'there was an error on server side!'
             })
         }
+    }
+
+    async searchbyLocation(req, res) {
+
+        const { 
+
+            raio,
+            latClient,
+            lonClient
+
+        } = req.body
+
+        
+        try {
+
+            const professionaluser = await ProUser.find()
+
+            if (professionaluser) {
+
+               const a = [ latClient, lonClient ]       
+                //const b =  [ professionaluser.data.lat, professionaluser.lng ]
+                
+                const distance = professionaluser.map((coords => {
+                   
+                    const b =  [ coords.lat, coords.lng ]
+                    
+                    const result = ( haversine ( a, b ))
+                    console.log(result)
+                    if (result <= raio) {
+            
+                        return coords
+                    }
+
+                }))
+
+                console.log(distance)
+                return res.json({
+                    data: distance,
+                    message: 'Sucess'
+                })
+
+            }
+        } catch (err) {
+            console.log(err)
+            res.status(500).json({
+                message: 'there was an error on server side!'
+            })
+        }
+
     }
 }
   
