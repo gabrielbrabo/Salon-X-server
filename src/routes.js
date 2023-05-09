@@ -2,7 +2,6 @@ const UsersController = require( "./controllers/UsersController")
 const SessionsController = require ("./controllers/SessionsController")
 const RefreshController = require ("./controllers/RefreshController")
 const ProfessionalUser = require ("./controllers/ProfessionalUser")
-const SearchByLocation = require ("./controllers/ProfessionalUser")
 
 const auth = require ("./middlewares/auth")
 

@@ -101,30 +101,32 @@ class ProfessionalUser {
 
         } = req.body
 
-        
         try {
 
             const professionaluser = await ProUser.find()
 
             if (professionaluser) {
-
-               const a = [ latClient, lonClient ]       
-                //const b =  [ professionaluser.data.lat, professionaluser.lng ]
                 
                 const distance = professionaluser.map((coords => {
                    
+                    const a = [ latClient, lonClient ]
                     const b =  [ coords.lat, coords.lng ]
                     
                     const result = ( haversine ( a, b ))
-                    console.log(result)
-                    if (result <= raio) {
+
+                    console.log(raio, 'km = ',raio * 1000,'mt')
+                    if (
+                            result <= raio.toString()
+                            .replace(',', '.') 
+                            * 
+                            1000
+                        ) {
             
                         return coords
                     }
 
                 }))
 
-                console.log(distance)
                 return res.json({
                     data: distance,
                     message: 'Sucess'
