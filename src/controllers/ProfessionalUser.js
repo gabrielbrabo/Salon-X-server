@@ -113,8 +113,7 @@ class ProfessionalUser {
                     const b =  [ coords.lat, coords.lng ]
                     
                     const result = ( haversine ( a, b ))
-
-                    console.log(raio, 'km = ',raio * 1000,'mt')
+                    
                     if (
                             result <= raio.toString()
                             .replace(',', '.') 

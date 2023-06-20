@@ -1,12 +1,15 @@
 const express = require('express')
 const app = express()
 const mongoose = require("mongoose");
+const morgan = require("morgan");
 const cors = require('cors')
 const routes = require('./routes')
 require("dotenv").config();
 
 app.use(express.json());
 app.use(cors())
+app.use(express.urlencoded({ extended: true }));
+app.use(morgan("dev"));
 app.use(routes)
 
 const dbUser = process.env.DB_USER;
